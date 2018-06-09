@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "bookmark manager",
+    "description": "This extension allows you to overwrite the previous bookmark from the current website.",
+    "version": "1.0",
+    "author": "Adele",
+    "browser_action":{
+        "default_icon": "tab-icon.png",
+        "default_title": "Update bookmarks"
+    },
+    "chrome_url_overrides": {
+        "newtab": "newtab.html"
+    },
+    "permissions": ["activeTab"]
+}
