@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// var print = args => console.log(args);
 var print = args => console.log(args);
 
 // grab website url
@@ -9,7 +10,7 @@ var url = window.location.hostname;
 
 // listen for ctrl+shift+d/D
 $(document).keydown(function(e) {
-  if((e.key == 'd' || e.key == 'D') && e.ctrlKey && e.shiftKey){
+  if((e.key == 'a' || e.key == 'A') && e.ctrlKey && e.shiftKey){
     print('nice');
     e.preventDefault();
     print(url);
