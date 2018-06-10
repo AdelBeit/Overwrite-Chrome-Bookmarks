@@ -1,0 +1,10 @@
+goal: overwrite a bookmark link if it matches the current url
+
+keys: ctrl shift d
+
+steps:
+1) listen for the key combo
+2) grab website url
+3) search bookmarks for url
+4) edit the bookmark and give it current url if it exists
+5) otherwise bookmark current url
