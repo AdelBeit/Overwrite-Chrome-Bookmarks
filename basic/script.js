@@ -1,27 +1,23 @@
-// var print = args => console.log(args);
-var print = args => alert(args);
-
-var url = chrome.tabs.Tab;
-print(url);
+var print = e => alert(e);
 
 // grab website url
-chrome.commands.onCommand.addListener(function(command){
-    if (command == "overwrite-bookmark"){
-        
-        chrome.tabs.executeScript({file: "jquery.js"});
-        // chrome.tabs.executeScript({file: "script.js"});
-        // chrome.tabs.executeScript({code: dumpBookmarks()});
-    }
-});
-// chrome.browserAction.onClicked.addListener(function(tab){
-    // chrome.tabs.executeScript(null, {file: "popup.js"});
-    // console.log("Command:", command);
-    // alert('ok');
-    // print('hi');
+var url = window.location.hostname;
+
+// grab website url
+// var url = document.location.hostname;
+
+print(url);
+// listen for ctrl+shift+a/A
+// $(document).keydown(function(e) {
+//   if((e.key == 'a' || e.key == 'A') && e.ctrlKey && e.shiftKey){
+//     print('nice');
+//     e.preventDefault();
+//     print(url);
+//   }
 // });
 
 
-// dumpBookmarks();
+dumpBookmarks();
 
 // Search the bookmarks when entering the search keyword.
 $(function() {
@@ -36,9 +32,6 @@ $(function() {
 
 // Traverse the bookmark tree, and print the folder and nodes.
 function dumpBookmarks(query) {
-
-    var url = document.location.hostname;
-    print(url);
     print('this far');
     print(chrome.permissions);
     print('this far 3');

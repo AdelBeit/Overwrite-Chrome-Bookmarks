@@ -1,25 +1,16 @@
 {
-  "name": "Bookmark Overwrite",
+  "name": "My Bookmarks",
   "version": "1.1",
-  "description": "Bookmark/overwrite current site's bookmark",
-  "manifest_version": 2,
+  "description": "A browser action with a popup dump of all bookmarks, including search, add, edit and delete.",
   "permissions": [
-    "activeTab"
+    "bookmarks",
+    "tabs"
   ],
   "browser_action": {
-      "default_icon": "icon.png"
+      "default_title": "My Bookmarks",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
   },
-  "background":{
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-  "commands":{
-    "overwrite-bookmark":{
-      "suggested_key": {
-        "default": "Ctrl+Shift+A"
-      },
-      "description": "Trigger the extension"
-    }
-  },
+  "manifest_version": 2,
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
 }

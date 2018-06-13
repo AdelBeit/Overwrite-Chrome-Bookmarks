@@ -1,59 +1,21 @@
-// var print = args => console.log(args);
-var print = args => alert(args);
-
-var url = chrome.tabs.Tab;
-print(url);
-
-// grab website url
-chrome.commands.onCommand.addListener(function(command){
-    if (command == "overwrite-bookmark"){
-        
-        chrome.tabs.executeScript({file: "jquery.js"});
-        // chrome.tabs.executeScript({file: "script.js"});
-        // chrome.tabs.executeScript({code: dumpBookmarks()});
-    }
-});
-// chrome.browserAction.onClicked.addListener(function(tab){
-    // chrome.tabs.executeScript(null, {file: "popup.js"});
-    // console.log("Command:", command);
-    // alert('ok');
-    // print('hi');
-// });
-
-
-// dumpBookmarks();
+// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
 // Search the bookmarks when entering the search keyword.
 $(function() {
-    print('hi9');
-  $(document).ready(function() {
-    //  $('#bookmarks').empty();
-    print('first function');
-    dumpBookmarks();
-    print('function 2');
+  $('#search').change(function() {
+     $('#bookmarks').empty();
+     dumpBookmarks($('#search').val());
   });
 });
-
 // Traverse the bookmark tree, and print the folder and nodes.
 function dumpBookmarks(query) {
-
-    var url = document.location.hostname;
-    print(url);
-    print('this far');
-    print(chrome.permissions);
-    print('this far 3');
-
-    var bookmarkTreeNodes = chrome.bookmarks.getTree(
-        function(bookmarkTreeNodes) {
-        print('this far 2');
-        // $('#bookmarks').append(dumpTreeNodes(bookmarkTreeNodes, query));
-        var tn = dumpTreeNodes(bookmarkTreeNodes, query);
-        console.log(tn);
-        print(tn);
+  var bookmarkTreeNodes = chrome.bookmarks.getTree(
+    function(bookmarkTreeNodes) {
+      $('#bookmarks').append(dumpTreeNodes(bookmarkTreeNodes, query));
     });
 }
-
-// 
 function dumpTreeNodes(bookmarkNodes, query) {
   var list = $('<ul>');
   var i;
@@ -76,26 +38,17 @@ function dumpNode(bookmarkNode, query) {
      * When clicking on a bookmark in the extension, a new tab is fired with
      * the bookmark url.
      */
+    anchor.click(function() {
+      chrome.tabs.create({url: bookmarkNode.url});
+    });
     var span = $('<span>');
     var options = bookmarkNode.children ?
       $('<span>[<a href="#" id="addlink">Add</a>]</span>') :
       $('<span>[<a id="editlink" href="#">Edit</a> <a id="deletelink" ' +
         'href="#">Delete</a>]</span>');
-    var edit = bookmarkNode.children ? $(`
-    <table>
-      <tr>
-        <td>Name</td>
-        <td> 
-          <input id="title">
-        </td>
-      </tr>
-      <tr>
-        <td>URL</td>
-        <td>
-          <input id="url">
-        </td>
-      </tr>
-    </table>`) : $('<input>');
+    var edit = bookmarkNode.children ? $('<table><tr><td>Name</td><td>' +
+      '<input id="title"></td></tr><tr><td>URL</td><td><input id="url">' +
+      '</td></tr></table>') : $('<input>');
     // Show add and edit links when hover over.
         span.hover(function() {
         span.append(options);
@@ -170,6 +123,6 @@ function dumpNode(bookmarkNode, query) {
   return li;
 }
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   dumpBookmarks();
-// });
+document.addEventListener('DOMContentLoaded', function () {
+  dumpBookmarks();
+});
