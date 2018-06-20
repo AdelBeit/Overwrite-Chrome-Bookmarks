@@ -8,7 +8,9 @@
     "activeTab"
   ],
   "browser_action": {
-      "default_icon": "icon.png"
+      "default_icon": "icon.png",
+      "default_title": "Overwrite Bookmarks",
+      "default_popup": "popup.html"
   },
   "background":{
     "scripts": ["background.js"],
@@ -18,18 +20,6 @@
     "overwrite-bookmark":{
       "suggested_key": {
         "default": "Ctrl+Shift+A"
-      },
-      "description": "Trigger the extension"
-    },
-    "testadd":{
-      "suggested_key": {
-        "default": "Ctrl+Shift+X"
-      },
-      "description": "Trigger the extension"
-    },
-    "heythere":{
-      "suggested_key": {
-        "default": "Ctrl+Shift+V"
       },
       "description": "Trigger the extension"
     }
