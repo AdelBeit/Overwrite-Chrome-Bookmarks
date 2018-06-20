@@ -1,6 +1,7 @@
 var geturl = true;
 var hostsearch = "";
 var taburl = "";
+var bookmarked = false;
 
 // grab website url
 chrome.commands.onCommand.addListener(function(command){
@@ -35,20 +36,33 @@ chrome.commands.onCommand.addListener(function(command){
 
           // delete all of them
           bmfolder.children.map((e) => {
+            if (e.url == taburl){
+              bookmarked = true;
+            }
             if (e.url.includes(hostsearch) && hostsearch != "") {
-              title = e.title;
               // removes from bookmarks
               chrome.bookmarks.remove(String(e.id));
             }
           });
 
-          // add new bookmark
-          chrome.bookmarks.create({
-            parentId: bmfolder.id,
-            title: title,
-            url: taburl
-          });
-
+          if(bookmarked){
+            // delete all of them
+            bmfolder.children.map((e) => {
+              if (e.url == taburl && bookmarked){
+                bookmarked = false;
+                // removes from bookmarks
+                chrome.bookmarks.remove(String(e.id));
+              }
+            });
+          }
+          else{
+            // add new bookmark
+            chrome.bookmarks.create({
+              parentId: bmfolder.id,
+              title: title,
+              url: taburl
+            });
+          }
         });
       });
 
