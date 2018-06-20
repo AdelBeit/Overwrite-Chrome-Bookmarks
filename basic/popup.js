@@ -84,8 +84,8 @@ $(function () {
       // });
       // // }
 
-      // dumpBookmarks(dummy);
-      // dumpBookmarks(newdum);
+      dumpBookmarks(dummy);
+      dumpBookmarks(newdum);
 
     });
 
@@ -107,8 +107,8 @@ $(function () {
 
       // });
 
-      // dumpBookmarks(dummy);
-      // dumpBookmarks(newdum);
+      dumpBookmarks(dummy);
+      dumpBookmarks(newdum);
 
       deleteNodes(bm);
     });
@@ -178,8 +178,8 @@ function deleteNodes(bookmarkNodes) {
   });
 
   // delete this later
-  dumpBookmarks(dummy);
-  dumpBookmarks(newdum);
+  // dumpBookmarks(dummy);
+  // dumpBookmarks(newdum);
 }
 
 // Search the bookmarks when entering the search keyword.
