@@ -1,11 +1,11 @@
 var geturl = true;
 var hostsearch = "";
 var taburl = "";
-var bookmarked = false;
 
 // grab website url
 chrome.commands.onCommand.addListener(function(command){
     if (command == "overwrite-bookmark"){
+      var bookmarked = false;
 
       if(geturl){
         // get the url 
@@ -34,19 +34,22 @@ chrome.commands.onCommand.addListener(function(command){
           var title = tab[0].title;
           taburl = tab[0].url;
 
-          // delete all of them
+          // delete all of them and unbookmark current tab if its already bookmarked
           bmfolder.children.map((e) => {
             if (e.url == taburl){
               bookmarked = true;
+              chrome.bookmarks.remove(String(e.id));
             }
+            // remove any other bookmarks that match search url
             if (e.url.includes(hostsearch) && hostsearch != "") {
               // removes from bookmarks
               chrome.bookmarks.remove(String(e.id));
             }
           });
 
+          // if current tab has been bookmarked, unbookmark it
           if(bookmarked){
-            // delete all of them
+            // delete it and unsave the var
             bmfolder.children.map((e) => {
               if (e.url == taburl && bookmarked){
                 bookmarked = false;
