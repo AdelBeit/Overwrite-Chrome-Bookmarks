@@ -1,4 +1,4 @@
-# Bookmark Overwite [[Javascript](https://github.com/AdelBeit/Overwrite-Chrome-Bookmarks)]
+# QuickMark [[Javascript](https://github.com/AdelBeit/Overwrite-Chrome-Bookmarks)]
 
 Made this to learn more about chrome extensions.
 
